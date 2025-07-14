@@ -13,13 +13,13 @@
       font-weight: 300;
       background-color: #FFFDF6;
       padding: 0;
-      display: flex;
+      display: absolute;
       align-items: center;
       justify-content: center;
     }
 
     .hero {
-      background-image: url('pasigRiver.jpeg');
+      background-image: url('pasig.jpg');
       background-size: cover;
       background-position: center;
       width: 100%;
@@ -41,7 +41,7 @@
       height: 50px;
       width: 1000px;
       border-radius: 0 0 25px 25px;
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
@@ -52,6 +52,10 @@
       justify-content: space-between;
       padding: 0 1.5rem;
     }
+
+    header.fade-effect {
+  transition: opacity 0.3s ease;
+}
 
     .logo {
       font-weight: bold;
@@ -74,6 +78,10 @@
       transition: all 0.3s ease;
     }
 
+    nav a:hover{
+      border-bottom: 2px solid #0a1b3d;
+    }
+
     .user-icon{
       font-size: 18px;
       color: #0a1b3d;
@@ -92,7 +100,9 @@
     }
 
     .upload-btn:hover {
-      background-color: #006dab;
+      background-color: transparent;
+      border: 2px solid #346347;
+      color:#0a1b3d;
     }
 
     .hero::before {
@@ -155,8 +165,9 @@
     }
 
     .cta-button:hover {
-      background-color: #006dab;
-      color: #fff;
+      background-color: transparent;
+      border: 2px solid #FFFDF6;
+      color:#FFFDF6;
     }
 
      .text-row {
@@ -187,12 +198,37 @@
   padding-top: 5px;
 }
 
-.circle-btn{
-  width: 50px;
-  height: 50px;
+.circle-btn {
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background-color: pink;
-  position:absolute;
-  top: 675px;
+  background-color: #FFFDF6;
+  position: absolute;
+  top: 685px;
+  right: 170px;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.inner-c {
+  width: 35px;
+  height: 35px;
+  background-color: #0a1b3d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.inner-c i {
+  color: #FFFDF6; /* match outer circle or adjust */
+  font-size: 14px;
+}
+
+.inner-c:hover{
+  opacity: 0.4;
+}
+
