@@ -1,234 +1,282 @@
  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
 
-    html, body {
-      height: 100%;
-    }
+ html,
+ body {
+   height: 100%;
+ }
 
-    body {
-      font-family: 'afacad';
-      font-weight: 300;
-      background-color: #FFFDF6;
-      padding: 0;
-      display: absolute;
-      align-items: center;
-      justify-content: center;
-    }
+ body {
+   font-family: 'afacad';
+   font-weight: 300;
+   background-color: #FFFDF6;
+   padding: 0;
+   display: absolute;
+   align-items: center;
+   justify-content: center;
+ }
 
-    .hero {
-      background-image: url('pasig.jpg');
-      background-size: cover;
-      background-position: center;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      align-items: end;
-      justify-content: flex-start;
-      padding-left: 5%;
-      position: relative;
-      border-radius: 30px;
-      overflow: hidden;
-      border: 8px solid white;
-      box-sizing: border-box;
-      padding-bottom: 5%;
-    }
+ .hero {
+   background-image: url('pasig.jpg');
+   background-size: cover;
+   background-position: center;
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   align-items: end;
+   justify-content: flex-start;
+   padding-left: 5%;
+   position: relative;
+   border-radius: 30px;
+   overflow: hidden;
+   border: 8px solid white;
+   box-sizing: border-box;
+   padding-bottom: 5%;
+ }
 
-    header {
-      background-color: #FFFDF6;
-      height: 50px;
-      width: 1000px;
-      border-radius: 0 0 25px 25px;
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-    }
+ header {
+   background-color: #FFFDF6;
+   height: 50px;
+   width: 90%;
+   max-width: 1000px;
+   border-radius: 0 0 25px 25px;
+   position: fixed;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   z-index: 10;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 0 1.5rem;
+ }
 
-    header.fade-effect {
-  transition: opacity 0.3s ease;
+ header.fade-effect {
+   transition: opacity 0.3s ease;
+ }
+
+ .logo {
+   font-weight: bold;
+   font-size: 24px;
+   color: #0a1b3d;
+ }
+
+ nav {
+   display: flex;
+   align-items: center;
+ }
+
+ nav a {
+   margin-left: 1.5rem;
+   text-decoration: none;
+   color: #0a1b3d;
+   font-weight: 500;
+   padding-bottom: 4px;
+   border-bottom: 2px solid transparent;
+   transition: all 0.3s ease;
+ }
+
+ nav a:hover {
+   border-bottom: 2px solid #0a1b3d;
+ }
+
+ .user-icon {
+   font-size: 18px;
+   color: #0a1b3d;
+   padding-left: 1rem;
+ }
+
+ .upload-btn {
+   background-color: #0a1b3d;
+   color: #fff;
+   padding: 8px 16px;
+   border-radius: 12px;
+   margin-left: 1.5rem;
+   text-decoration: none;
+   font-weight: bold;
+   transition: 0.3s ease;
+ }
+
+ .upload-btn:hover {
+   background-color: transparent;
+   border: 2px solid #346347;
+   color: #0a1b3d;
+ }
+
+ .hero::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.7);
+   z-index: 1;
+ }
+
+ .hero-content {
+   font-family: 'afacad';
+   position: relative;
+   z-index: 2;
+   color: white;
+   max-width: 500px;
+   margin-top: 80px;
+ }
+
+ .hero-content h1 {
+   font-family: 'Montserrat Alternates';
+   font-size: 4.5vw;
+   font-weight: 500;
+   line-height: 1.2;
+   margin-bottom: 0;
+   width: 90vw;
+ }
+
+ .cta-button {
+   padding: 20px 10px;
+   background-color: #fff;
+   color: #0a1b3d;
+   border-radius: 30px;
+   font-weight: 500;
+   text-decoration: none;
+   text-align: center;
+   justify-content: center;
+   display: inline-flex;
+   align-items: center;
+   justify-content: space-between;
+   font-size: 20px;
+   transition: 0.3s;
+   width: 300px;
+   height: 35px;
+ }
+
+ .cta-button::after {
+   content: '\f054';
+   /* Font Awesome arrow-right */
+   font-family: 'Font Awesome 6 Free';
+   font-weight: 900;
+   background-color: #0a1b3d;
+   color: #fff;
+   padding: 8px 10px;
+   border-radius: 50%;
+   font-size: 14px;
+
+ }
+
+ .cta-button:hover {
+   background-color: transparent;
+   border: 2px solid #FFFDF6;
+   color: #FFFDF6;
+ }
+
+ .text-row {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   padding-left: 5px;
+   padding-top: 10px;
+ }
+
+ .text-row h1 {
+   width: 185px;
+
+ }
+
+ .l-text {
+   margin: 0;
+   width: 50px;
+ }
+
+ .text-row a {
+   width: 150px;
+ }
+
+ .logo img {
+   width: 100px;
+   height: 35px;
+   padding-top: 5px;
+ }
+
+ .circle-btn {
+   width: 70px;
+   height: 70px;
+   border-radius: 50%;
+   background-color: #FFFDF6;
+   position: absolute;
+   top: 685px;
+   right: 170px;
+   z-index: 2;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .inner-c {
+   width: 35px;
+   height: 35px;
+   background-color: #0a1b3d;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: opacity 0.2s ease;
+ }
+
+ .inner-c i {
+   color: #FFFDF6;
+   /* match outer circle or adjust */
+   font-size: 14px;
+ }
+
+ .inner-c:hover {
+   opacity: 0.4;
+ }
+
+
+ /*                                                         RESPONSIVE QUIERIES                                               */
+
+ @media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 6vw;
+    width: 100%;
+  }
+
+  .cta-button {
+    width: 90%;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  nav a {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .circle-btn {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+  }
 }
 
-    .logo {
-      font-weight: bold;
-      font-size: 24px;
-      color: #0a1b3d;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #0a1b3d;
-      font-weight: 500;
-      padding-bottom: 4px;
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
-    }
-
-    nav a:hover{
-      border-bottom: 2px solid #0a1b3d;
-    }
-
-    .user-icon{
-      font-size: 18px;
-      color: #0a1b3d;
-      padding-left: 1rem;
-    }
-
-    .upload-btn {
-      background-color: #0a1b3d;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 12px;
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s ease;
-    }
-
-    .upload-btn:hover {
-      background-color: transparent;
-      border: 2px solid #346347;
-      color:#0a1b3d;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 1;
-    }
-
-    .hero-content {
-      font-family: 'afacad';
-      position: relative;
-      z-index: 2;
-      color: white;
-      max-width: 500px;
-      margin-top: 80px;
-    }
-
-    .hero-content h1 {
-      font-family: 'Montserrat Alternates';
-      font-size: 70px;
-      font-weight: 500;
-      line-height: 1.2;
-      margin-bottom: 0;
-      width: 695px;
-    }
-
-    .cta-button {
-      padding: 20px 10px; 
-      background-color: #fff;
-      color: #0a1b3d;
-      border-radius: 30px;
-      font-weight: 500;
-      text-decoration: none;
-      text-align: center;
-      justify-content: center;
-      display: inline-flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 20px;
-      transition: 0.3s;
-      width: 300px;
-      height: 35px;
-    }
-
-    .cta-button::after {
-      content: '\f054'; /* Font Awesome arrow-right */
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      background-color: #0a1b3d;
-      color: #fff;
-      padding: 8px 10px;
-      border-radius: 50%;
-      font-size: 14px;
-     
-    }
-
-    .cta-button:hover {
-      background-color: transparent;
-      border: 2px solid #FFFDF6;
-      color:#FFFDF6;
-    }
-
-     .text-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding-left: 5px;
-      padding-top: 10px;
-    }
-
-    .text-row h1{
-      width: 185px;
-
-    }
-
-    .l-text {
-      margin: 0;
-      width: 50px;
-    }
-
-    .text-row a{
-      width: 150px;
-    }
-
-.logo img {
-  width: 100px;
-  height: 35px;
-  padding-top: 5px;
-}
-
-.circle-btn {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: #FFFDF6;
+.bot-text{
+  font-size: 20px;
+  color:#141E46;
   position: absolute;
-  top: 685px;
-  right: 170px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
+  bottom: 50px;
+  justify-items: center;
   justify-content: center;
+  left: 720px;
+  font-weight: 500;
 }
-
-.inner-c {
-  width: 35px;
-  height: 35px;
-  background-color: #0a1b3d;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.2s ease;
-}
-
-.inner-c i {
-  color: #FFFDF6; /* match outer circle or adjust */
-  font-size: 14px;
-}
-
-.inner-c:hover{
-  opacity: 0.4;
-}
-
