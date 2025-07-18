@@ -10,6 +10,6 @@
         loader.style.display = "none";
         mainContent.style.display = "block";
       }, 1000); // matches the fade transition
-    }, 4000); // Adjust loading time (ms)
+    }, 3000); // Adjust loading time (ms)
   });
 
