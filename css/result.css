@@ -99,29 +99,34 @@
     margin-top: 9rem;
 }
 
-.results-receipt h1{
-    color:#264a34;
-    margin-top: 1.5rem;
-    text-align: center;
+.results-receipt h1 {
+  color: #264a34;
+  margin: 1.5rem auto 1rem auto;
+  text-align: center;
 }
 
-.results-receipt .receipt-titles{
-    display: flex;
-    flex-direction: row;
-    gap: 5rem;
-    margin: 2rem;
-    padding-left: 1rem;
-    font-size: 23px;
+.results-receipt .receipt-titles {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  font-size: 23px;
+  font-weight: bold;
+  text-align: center;
 }
 
-.results-receipt .results-item{
-    display: flex;
-    flex-direction: row;
-    gap: 6rem;
-    margin: 2rem;
-    padding-left: 1rem;
-    font-size: 21px;
+.results-receipt .receipt-titles h4 {
+  width: 50%;
+  margin: 0;
 }
+
+
+.results-receipt .results-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  font-size: 21px;
+}
+
 
 
 .other-infos p{

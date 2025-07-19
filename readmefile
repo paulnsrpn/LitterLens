@@ -1,0 +1,32 @@
+
+===========================
+ LitterLens - RUN INSTRUCTIONS
+===========================
+
+You will need to open TWO TERMINAL WINDOWS to run the system:
+
+----------------------------------------
+TERMINAL 1 - Run the Python Backend (YOLO)
+----------------------------------------
+1. Open Command Prompt.
+2. Navigate to the Python folder:
+   cd C:\Users\Eman\Desktop\LitterLens\python
+3. Run the backend app:
+   python app.py
+
+----------------------------------------
+TERMINAL 2 - Serve the Frontend Website
+----------------------------------------
+1. Open another Command Prompt.
+2. Navigate to the root folder:
+   cd C:\Users\Eman\Desktop\LitterLens
+3. Start the web server:
+   python -m http.server 8000
+
+----------------------------------------
+OPEN YOUR BROWSER
+----------------------------------------
+Go to:
+   http://localhost:8000
+
+This will launch the LitterLens interface.

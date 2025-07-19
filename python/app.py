@@ -1,84 +1,106 @@
-# from flask import Flask, request, jsonify
-# from ultralytics import YOLO
-# import os
-# import cv2
-# import numpy as np
-# from datetime import datetime
-# from werkzeug.utils import secure_filename
-# from flask_cors import CORS
+from flask import Flask, request, jsonify, send_from_directory
+from ultralytics import YOLO
+import os
+import cv2
+import numpy as np
+from datetime import datetime
+from werkzeug.utils import secure_filename
+from flask_cors import CORS
 
+# Initialize Flask app
+app = Flask(__name__)
+CORS(app)
 
-# app = Flask(__name__)
-# CORS(app)
-# UPLOAD_FOLDER = 'uploads'
-# MODEL_PATH = 'my_model.pt'  # Change to your model
-# CONF_THRESHOLD = 0.05
+# === Configuration ===
+UPLOAD_FOLDER = 'uploads'
+MODEL_PATH = 'my_model.pt'       #model of the system
+CONF_THRESHOLD = 0.25            # Minimum confidence threshold for detections
 
-# # Create upload folder if not exists
-# os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+# Ensure the upload directory exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# model = YOLO(MODEL_PATH)
+# Load the YOLO model
+model = YOLO(MODEL_PATH)
 
-# def generate_colors(num_classes):
-#     np.random.seed(42)
-#     return np.random.randint(0, 255, size=(num_classes, 3), dtype='uint8')
+# === Utility Function: Generate Random Colors for Class Labels ===
+def generate_colors(num_classes):
+    np.random.seed(42)  # For consistent color assignment
+    return np.random.randint(0, 255, size=(num_classes, 3), dtype='uint8')
 
-# @app.route('/analyze', methods=['POST'])
-# def analyze_image():
-#     if 'image' not in request.files:
-#         return jsonify({'error': 'No file part'}), 400
+# === Serve Uploaded Files ===
+@app.route('/uploads/<path:filename>')
+def uploaded_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
 
-#     file = request.files['image']
-#     if file.filename == '':
-#         return jsonify({'error': 'No selected file'}), 400
+# === Main Detection Endpoint ===
+@app.route('/analyze', methods=['POST'])
+def analyze_image():
+    # Validate uploaded file
+    if 'image' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
 
-#     filename = secure_filename(file.filename)
-#     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-#     image_id = f"image_{timestamp}"
-#     image_folder = os.path.join(UPLOAD_FOLDER, image_id)
-#     os.makedirs(image_folder, exist_ok=True)
+    file = request.files['image']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
 
-#     image_path = os.path.join(image_folder, filename)
-#     file.save(image_path)
+    # Secure filename and prepare folder structure
+    filename = secure_filename(file.filename)
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    image_id = f"image_{timestamp}"
+    image_folder = os.path.join(UPLOAD_FOLDER, image_id)
+    os.makedirs(image_folder, exist_ok=True)
 
-#     frame = cv2.imread(image_path)
-#     results = model(image_path, conf=CONF_THRESHOLD)[0]
+    image_path = os.path.join(image_folder, filename)
+    file.save(image_path)
 
-#     num_classes = len(model.names)
-#     colors = generate_colors(num_classes)
-#     object_summary = {}
+    # Read image and perform detection
+    frame = cv2.imread(image_path)
+    results = model(image_path, conf=CONF_THRESHOLD)[0]
 
-#     for det in results.boxes:
-#         cls_id = int(det.cls.item())
-#         label = model.names[cls_id]
-#         conf = det.conf.item()
-#         xyxy = det.xyxy.cpu().numpy().astype(int)[0]
-#         color = tuple(int(c) for c in colors[cls_id])
+    num_classes = len(model.names)
+    colors = generate_colors(num_classes)
 
-#         cv2.rectangle(frame, (xyxy[0], xyxy[1]), (xyxy[2], xyxy[3]), color, 2)
-#         cv2.putText(frame, f"{label} {conf:.2f}", (xyxy[0], xyxy[1]-10),
-#                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
-#         object_summary[label] = object_summary.get(label, 0) + 1
+    object_summary = {}
+    conf_scores = []     # confidence scores for calculating "accuracy"
 
-#     y_offset = 30
-#     for obj, count in object_summary.items():
-#         cv2.putText(frame, f"{obj}: {count}", (10, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
-#         y_offset += 30
+    for det in results.boxes:
+        cls_id = int(det.cls.item())
+        label = model.names[cls_id]
+        conf = det.conf.item()
+        xyxy = det.xyxy.cpu().numpy().astype(int)[0]
+        color = tuple(int(c) for c in colors[cls_id])
 
-#     output_img_path = os.path.join(image_folder, "result.jpg")
-#     cv2.imwrite(output_img_path, frame)
+        # Draw bounding box and label (no count summary on image)
+        cv2.rectangle(frame, (xyxy[0], xyxy[1]), (xyxy[2], xyxy[3]), color, 2)
+        cv2.putText(frame, f"{label} {conf:.2f}", (xyxy[0], xyxy[1] - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
-#     output_txt_path = os.path.join(image_folder, "summary.txt")
-#     with open(output_txt_path, 'w') as f:
-#         for obj, count in object_summary.items():
-#             f.write(f"{obj}: {count}\n")
+        # Update count and confidence
+        object_summary[label] = object_summary.get(label, 0) + 1
+        conf_scores.append(conf)
 
-#     return jsonify({
-#         'message': 'Image analyzed',
-#         'folder': image_id,
-#         'result_image': f"{image_id}/result.jpg",
-#         'summary': object_summary
-#     })
+    # Calculate mock "accuracy" as mean confidence
+    accuracy = round(np.mean(conf_scores) * 100, 2) if conf_scores else 0.0
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+    # Save annotated result image
+    output_img_path = os.path.join(image_folder, "result.jpg")
+    cv2.imwrite(output_img_path, frame)
+
+    # Save plain text summary
+    output_txt_path = os.path.join(image_folder, "summary.txt")
+    with open(output_txt_path, 'w') as f:
+        for obj, count in object_summary.items():
+            f.write(f"{obj}: {count}\n")
+
+    # Return JSON response
+    return jsonify({
+        'message': 'Image analyzed',
+        'folder': image_id,
+        'result_image': f"{image_id}/result.jpg",
+        'summary': object_summary,
+        'accuracy': accuracy
+    })
+
+# === Run the App ===
+if __name__ == '__main__':
+    app.run(debug=True)
