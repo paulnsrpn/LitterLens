@@ -1,0 +1,111 @@
+.about-bg-box{
+    width: 100%;
+    height: 100vh;
+    background-color:#141E46;
+}
+
+.first-line {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content:end;
+  gap: 30rem; /* adjust this value */
+  padding-top: 3rem;
+  padding-left: 4rem;
+  height: 440px;
+}
+.about-header {
+    display:flex;
+    flex-direction: column;
+    text-align:left;
+    margin-bottom: 3rem;
+    width: 70px;
+    padding: 3rem;
+    justify-content:baseline;
+    
+}
+
+.about-header h2 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 500;
+    color: #ffffffcc;
+}
+
+.about-header h1 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 7rem;
+    font-weight: 700;
+    color: #ffffffcc;
+    margin-top: 0.5rem;
+}
+
+.white-line {
+  height: 2px;
+  width: 100px;
+  background-color: white;
+  border: none;
+  margin-top: 1rem;
+  animation: growLine 1s ease forwards;
+}
+
+@keyframes growLine {
+  from { width: 0; }
+  to { width: 100px; }
+}
+
+
+.description {
+    max-width: 600px;
+    margin: 1.5rem auto 1rem auto;
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #f0f0f0;
+    padding: 3rem;
+    height: 250px;
+}
+
+.what-we-do {
+  width: 180px;
+  color: #f0f0f0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align:right;
+  font-family: 'Montserrat Alternates';
+}
+
+.card-container {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  font-family: 'Afacad';
+  color:#f0f0f0;
+}
+
+.card {
+  font-size: 25px;
+  background-color: #141E46;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 370px;
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.15);
+}
+
+.card p{
+  font-size: 20px;
+}
+
+/* Translucent + dim effect on hover */
+.card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(20, 30, 70, 0.4); /* translucent */
+  backdrop-filter: blur(6px);
+}
