@@ -25,12 +25,12 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Arbutus&family=Homemade+Apple&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jaldi:wght@400;700&family=Jockey+One&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Macondo&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tilt+Neon&display=swap"
     rel="stylesheet">
-  <title>LitterLens Hero Section</title>
+  <title>LitterLens</title>
 </head>
 
 <body>
   
-  <div id="loader">
+  <!-- <div id="loader">
     <div class="flash"></div>
     <div class="loader-element">
       <h1>LitterLens</h1>
@@ -39,7 +39,7 @@
       <p>Capturing clarity, one frame at a time...</p>
     </div>
     <div class="loader"></div>
-  </div>
+  </div> -->
 
   <header>
     <div class="logo">
@@ -309,7 +309,6 @@
   </section>
 
   <footer class="footer">
-    <!-- Smooth multi-crest wave divider -->
     <div class="wave-container">
         <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150" preserveAspectRatio="none">
             <path fill="#FFFDF6" d="
@@ -324,7 +323,7 @@
     </div>
 
     <div class="footer-content">
-        <!-- Logo + Text -->
+      
         <div class="footer-left">
           <div class="logo2">
             <img src="css/logo2.png" alt="LitterLens Logo">
@@ -332,28 +331,26 @@
             <p class="copyright">&copy; LitterLens 2025. All rights reserved</p>
         </div>
 
-        <!-- Social Icons -->
-<div class="footer-icons">
-  <a href="#" class="icon-circle" aria-label="Facebook">
-      <i class="lab la-facebook-f"></i>
-  </a>
-  <a href="#" class="icon-circle" aria-label="Instagram">
-      <i class="lab la-instagram"></i>
-  </a>
-  <a href="#" class="icon-circle" aria-label="Twitter">
-      <i class="lab la-twitter"></i>
-  </a>
-  <a href="#" class="icon-circle" aria-label="YouTube">
-      <i class="lab la-youtube"></i>
-  </a>
-  <a href="#" class="icon-circle" aria-label="LinkedIn">
-      <i class="lab la-linkedin-in"></i>
-  </a>
-</div>
+      <div class="footer-icons">
+        <a href="#" class="icon-circle" aria-label="Facebook">
+            <i class="lab la-facebook-f"></i>
+        </a>
+        <a href="#" class="icon-circle" aria-label="Instagram">
+            <i class="lab la-instagram"></i>
+        </a>
+        <a href="#" class="icon-circle" aria-label="Twitter">
+            <i class="lab la-twitter"></i>
+        </a>
+        <a href="#" class="icon-circle" aria-label="YouTube">
+            <i class="lab la-youtube"></i>
+        </a>
+        <a href="#" class="icon-circle" aria-label="LinkedIn">
+            <i class="lab la-linkedin-in"></i>
+        </a>
+    </div>
 
 
     </div>
-
     <div class="footer-links">
         <a href="#">Terms of Service</a>
         <a href="#">Privacy Policy</a>
@@ -362,138 +359,8 @@
     </div>
 </footer>
 
-    
-
-
-  <!--                                                                                                    Guide Step Scroll Script -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const card = document.querySelector(".stepsCard");
-    const sections = card.querySelectorAll(".step");
-    const navLinks = document.querySelectorAll(".navParts a");
-
-    // Scroll listener to update active nav link
-    card.addEventListener("scroll", () => {
-      const scrollTop = card.scrollTop;
-
-      sections.forEach((section) => {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-
-        if (scrollTop >= top - height / 3 && scrollTop < top + height - height / 3) {
-          const id = section.getAttribute("id");
-
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${id}`) {
-              link.classList.add("active");
-            }
-          });
-        }
-      });
-    });
-
-    // Click listener to center the section inside stepsCard
-    navLinks.forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute("href").substring(1); // remove #
-        const targetSection = document.getElementById(targetId);
-
-        if (targetSection) {
-          const cardHeight = card.clientHeight;
-          const sectionTop = targetSection.offsetTop;
-          const sectionHeight = targetSection.offsetHeight;
-
-          // Scroll so that section is centered
-          const scrollTo = sectionTop - (cardHeight / 2) + (sectionHeight / 2);
-          card.scrollTo({
-            top: scrollTo,
-            behavior: "smooth"
-          });
-        }
-      });
-    });
-  });
-</script>
-
-
-
-  <script src="animation.js"></script>
-
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 800,
-      offset: 120,
-      easing: 'ease-in-out',
-      once: false,
-      mirror: true
-    });
-    
-
-
-
-// DRAG AND DROP UPLOAD IMAGE
-  const photoContainer = document.querySelector('.photo-container');
-  const uploadPage = document.getElementById('upload-page');
-  const fileInput = document.getElementById('file-upload');
-  const previewImage = document.getElementById('preview-image');
-  const previewBox = document.getElementById('preview-box');
-  const fileName = document.getElementById('file-name');    
-
-
-  function handleFile(file) {
-  if (!file || !file.type.startsWith('image/')) return;
-
-  const reader = new FileReader();
-    reader.onload = () => {
-    const base64Data = reader.result;
-    previewImage.src = base64Data;                 // ✅ assign to correct img
-    fileName.textContent = file.name;              // show file name
-    previewBox.style.display = 'flex';             // show container
-    photoContainer.classList.add('image-loaded');  // for hiding drop-zone
-
-    // Store image if needed elsewhere
-    uploadPage.dataset.imageBase64 = base64Data;
-  };
-
-  reader.readAsDataURL(file);
-}
-  // Highlight when dragging
-  ['dragenter', 'dragover'].forEach(eventType => {
-    uploadPage.addEventListener(eventType, e => {
-      e.preventDefault();
-      photoContainer.classList.add('dragging-highlight');
-    });
-  });
-
-  ['dragleave', 'drop'].forEach(eventType => {
-    uploadPage.addEventListener(eventType, e => {
-      e.preventDefault();
-      photoContainer.classList.remove('dragging-highlight');
-    });
-  });
-
-  // Handle drop
-  uploadPage.addEventListener('drop', e => {
-    const files = e.dataTransfer.files;
-    if (files.length > 0) {
-      handleFile(files[0]);
-    }
-  });
-
-  // Handle file select
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) {
-      handleFile(fileInput.files[0]);
-    }
-  });
-</script>
-
-
-
-
+ <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+ <script src="js/main.js"></script>
 
 </body>
 </html>

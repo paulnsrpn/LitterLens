@@ -1,0 +1,5 @@
+Water Hyacinth: 5
+Wood Scraps: 6
+Plastic: 5
+Plastic Wrapper: 2
+Bottle: 2

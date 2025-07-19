@@ -22,33 +22,35 @@
     margin-left: 1.5rem;
 }
 
-.back-btn{
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
-    align-content: center;
-    font-family: 'Afacad';
-    font-size: 20px;
-    padding: 1rem;
-    margin-left: 1rem;
-    font-weight: 600;
-}
-
-.back-btn i{
-  font-size: 24px;
-  color: #1a3e2d;         
-  cursor: pointer;
+.back-btn {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  font-family: 'Afacad';
+  font-size: 20px;
+  padding: 1rem;
+  margin-left: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #1a3e2d;
   transition: transform 0.3s ease, color 0.3s ease;
-  padding: 6px;
-  border-radius: 50%;
-  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.back-btn i:hover {
-  transform: scale(1.2); 
-  color:#346347;
+.back-btn:hover {
+  transform: scale(1.05);
+  color: #346347;
 }
+
+.back-btn i {
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.back-btn:hover i {
+  transform: scale(1.2);
+}
+
 
 
 .analyze-btn{
@@ -198,4 +200,18 @@
     background-color:#264a34;
     color:#FFFDF6;
     transform: scale(1.0);
+}
+
+.results-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* prevents image from overflowing */
+}
+
+.detected-image {
+  max-width: 100%;
+  max-height: 95%;
+  object-fit: contain;
+  border-radius: 25px;
 }

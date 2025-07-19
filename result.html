@@ -21,37 +21,53 @@
 
 <header>
     <div class="logo">
-      <img src="css/logo.png" alt="LitterLens Logo" a href="#home-page">
+      <a href="homePage.html">
+        <img src="css/logo.png" alt="LitterLens Logo">
+      </a>
     </div>
+
     <nav>
-      <a href="#home-page" class="active">Home</a>
-      <a href="#about-page">About</a>
-      <a href="#contactPage">Contacts</a>
-      <a href="#upload-page" class="upload-btn">upload</a>
+      <a href="homePage.html#home-page" class="active">Home</a>
+      <a href="homePage.html#about-page">About</a>
+      <a href="homePage.html#contactPage">Contacts</a>
+      <a href="homePage.html#upload-page" class="upload-btn">Upload</a>
       <i class="fas fa-user user-icon"></i>
     </nav>
+
 </header>
 
 <div class="results-wrapper">
   <div class="results-header">
     <h1>Detection Results</h1>
-    <div class="results-box"></div>
-    <div class="back-btn">
-      <i class="fas fa-chevron-left"></i>
-      <p>Go back </p>
+    
+    <!-- imageresult -->
+    <div class="results-box">
+      <img src="testImage/test_image1.jpg" alt="Detected Result" class="detected-image" />
     </div>
+  <a href="homePage.html" class="back-btn">
+    <i class="fas fa-chevron-left"></i>
+    <p>Go back</p>
+  </a>
+
   </div>
 
   <div class="results-receipt">
-    <h1> 24 selected Items </h1>
+   
+    <!-- count -->
+    <h1><span id="item-count">0</span> selected Items</h1>
+
     <div class="receipt-titles">
       <h4>Classification</h4>
       <h4>Count</h4>
     </div>
+
+    <!-- ITEMS -->
+
     <div class="results-item">
-      <p>Plastic Bottle</p>
-      <p> 10 </p>
+      <p class="item-name">Item Name</p>
+      <p class="item-count">0</p>
     </div>
+
     <div class="other-infos">
       <p>Detection Accuracy : 97%</p>
       <hr class="dashed-line">
@@ -70,14 +86,5 @@
 
 <button type="submit" class="analyze-btn">Analayze another photo</button>
 
-
-
-
-
-
-
-
-
-<body>
 </body>
 </html>
