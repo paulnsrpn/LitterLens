@@ -9,6 +9,14 @@
       {
         "select-name": "off"
       }
-    ]
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "document-title": "off"
+      }
+    ],
+    "axe/language": "off",
+    "no-inline-styles": "off"
   }
 }

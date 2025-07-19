@@ -43,7 +43,7 @@
 
   <header>
     <div class="logo">
-      <img src="logo.png" alt="LitterLens Logo" a href="#home-page">
+      <img src="css/logo.png" alt="LitterLens Logo" a href="#home-page">
     </div>
     <nav>
       <a href="#home-page" class="active">Home</a>
@@ -75,10 +75,12 @@
 
   <section id="upload-page" data-aos="fade-up">
     <div class="prim-content" id="upload-sec">
+       
       <div class="title-text">
         <h1> Let us detect and </h1>
         <h1> measure litter</h1>
       </div>
+
       <div class="p-text">
         <p>Take or upload a clear image of any river, canal, estero, or creek in Pasig.</p>
       </div>
@@ -91,7 +93,13 @@
             <input type="file" id="file-upload" hidden accept="image/*" />
           </div>
         </div>
-        <button class="upload-photo-btn">Upload Photo</button>
+
+        <div class="preview-box" id="preview-box" style="display: none;">
+          <img  src="css/pasig.jpg" id="preview-image" alt="Preview" />
+          <p id="file-name"></p>
+        </div>
+
+        <button class="upload-photo-btn">Analyze Photo</button>
       </div>
     </div>
   </section>
@@ -117,7 +125,6 @@
         </div>
 
       </div>
-
 
 
       <div class="card-container">
@@ -340,8 +347,69 @@
       once: false,
       mirror: true
     });
-  </script>
+
+
+
+// DRAG AND DROP UPLOAD IMAGE
+  const photoContainer = document.querySelector('.photo-container');
+  const uploadPage = document.getElementById('upload-page');
+  const fileInput = document.getElementById('file-upload');
+  const previewImage = document.getElementById('preview-image');
+  const previewBox = document.getElementById('preview-box');
+  const fileName = document.getElementById('file-name');    
+
+
+  function handleFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const base64Data = reader.result;
+    previewImage.src = base64Data;                 // ✅ assign to correct img
+    fileName.textContent = file.name;              // show file name
+    previewBox.style.display = 'flex';             // show container
+    photoContainer.classList.add('image-loaded');  // for hiding drop-zone
+
+    // Store image if needed elsewhere
+    uploadPage.dataset.imageBase64 = base64Data;
+  };
+
+  reader.readAsDataURL(file);
+}
+  // Highlight when dragging
+  ['dragenter', 'dragover'].forEach(eventType => {
+    uploadPage.addEventListener(eventType, e => {
+      e.preventDefault();
+      photoContainer.classList.add('dragging-highlight');
+    });
+  });
+
+  ['dragleave', 'drop'].forEach(eventType => {
+    uploadPage.addEventListener(eventType, e => {
+      e.preventDefault();
+      photoContainer.classList.remove('dragging-highlight');
+    });
+  });
+
+  // Handle drop
+  uploadPage.addEventListener('drop', e => {
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleFile(files[0]);
+    }
+  });
+
+  // Handle file select
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+      handleFile(fileInput.files[0]);
+    }
+  });
+</script>
+
+
+
+
 
 </body>
-
 </html>
