@@ -3,6 +3,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/homePage.css">
+  <link rel="stylesheet" href="css/result.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" ...>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +31,45 @@
       <i class="fas fa-user user-icon"></i>
     </nav>
 </header>
+
+<div class="results-wrapper">
+  <div class="results-header">
+    <h1>Detection Results</h1>
+    <div class="results-box"></div>
+    <div class="back-btn">
+      <i class="fas fa-chevron-left"></i>
+      <p>Go back </p>
+    </div>
+  </div>
+
+  <div class="results-receipt">
+    <h1> 24 selected Items </h1>
+    <div class="receipt-titles">
+      <h4>Classification</h4>
+      <h4>Count</h4>
+    </div>
+    <div class="results-item">
+      <p>Plastic Bottle</p>
+      <p> 10 </p>
+    </div>
+    <div class="other-infos">
+      <p>Detection Accuracy : 97%</p>
+      <hr class="dashed-line">
+    </div>
+    <div class="location">
+      <div class="loc-icon"><i class="fas fa-map-pin pin-icon"></i></div>
+      <div class="loc">
+        <h3> Pasig River </h3>
+        <p>Kalawaan Bridge</p>
+      </div>
+    </div>
+    <button type="submit" class="download-btn">Download Report (PDF) </button>
+  </div>
+</div>
+
+
+<button type="submit" class="analyze-btn">Analayze another photo</button>
+
 
 
 

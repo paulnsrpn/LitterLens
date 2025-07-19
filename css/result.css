@@ -1,0 +1,201 @@
+.results-header{
+    font-family: 'Montserrat Alternates';
+    color: #141E46;
+    display: flex;
+    flex-direction: column;
+    justify-items: left;
+    justify-content: left;
+    padding-top: 5rem;
+    padding-left: 2rem;
+}
+
+.results-header h1{
+    font-size: 40px;
+    padding-bottom: 1.5rem;
+}
+
+.results-box{
+    width: 650px;
+    height: 500px;
+    border-radius: 25px;
+    border: 1px solid #141E46;
+    margin-left: 1.5rem;
+}
+
+.back-btn{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    align-content: center;
+    font-family: 'Afacad';
+    font-size: 20px;
+    padding: 1rem;
+    margin-left: 1rem;
+    font-weight: 600;
+}
+
+.back-btn i{
+  font-size: 24px;
+  color: #1a3e2d;         
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-btn i:hover {
+  transform: scale(1.2); 
+  color:#346347;
+}
+
+
+.analyze-btn{
+    background-color: #346347;
+    display: flex;
+    width: 200px;
+    height: 40px;
+    padding: 0 1rem;
+    border-radius: 25px;
+    color: #FFFDF6;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    justify-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-family: 'Afacad';
+    position: absolute;
+    left: 680px;
+    bottom: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.analyze-btn:hover{
+    background-color:#264a34;
+    transform: scale(1.1); 
+}
+
+.results-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    align-content: start;
+    justify-items: center;
+    justify-content:center;
+    gap: 2rem;
+}
+
+.results-receipt{
+    width: 400px;
+    height: 550px;
+    border: 1px solid #141E46;
+    border-radius: 25px;
+    margin-top: 9rem;
+}
+
+.results-receipt h1{
+    color:#264a34;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.results-receipt .receipt-titles{
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    margin: 2rem;
+    padding-left: 1rem;
+    font-size: 23px;
+}
+
+.results-receipt .results-item{
+    display: flex;
+    flex-direction: row;
+    gap: 6rem;
+    margin: 2rem;
+    padding-left: 1rem;
+    font-size: 21px;
+}
+
+
+.other-infos p{
+    color:#346347;
+    font-weight: bold;
+    font-size: 22px;
+    margin-left: 2rem;
+}
+
+.dashed-line{
+    height: 4px; /* line thickness */
+    width: 80%;
+    background-image: repeating-linear-gradient(
+    to right,
+    #1a3e2d 0px,
+    #1a3e2d 10px,  /* dash length */
+    transparent 10px,
+    transparent 20px  /* gap length */
+  );
+  margin: 10px auto;
+}
+
+.pin-icon{
+    color:#346347;
+    font-size: 25px;
+    margin-right: 9px;
+}
+
+.loc h3{
+    font-size: 22px;
+}
+
+.loc p{
+    font-size: 17px;
+}
+
+.location{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2.3rem;
+}
+
+.loc{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.other-infos{
+    margin-top: 180px;
+
+}
+
+.download-btn{
+    background-color: #BCCBBC;
+    display: flex;
+    width: 300px;
+    height: 40px;
+    border-radius: 25px;
+    color: #346347;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    justify-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-family: 'Afacad';
+    font-weight: 600;
+    margin: 20px auto 0 auto;
+    border: 1px solid #346347;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.download-btn:hover{
+    background-color:#264a34;
+    color:#FFFDF6;
+    transform: scale(1.0);
+}
