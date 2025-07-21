@@ -7,7 +7,6 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 
-# Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
@@ -16,13 +15,11 @@ UPLOAD_FOLDER = 'uploads'
 MODEL_PATH = 'my_model.pt'       #model of the system
 CONF_THRESHOLD = 0.25            # Minimum confidence threshold for detections
 
-# Ensure the upload directory exists
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Load the YOLO model
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 model = YOLO(MODEL_PATH)
 
-# === Utility Function: Generate Random Colors for Class Labels ===
+# Generate Random Colors for Class Labels ===
 def generate_colors(num_classes):
     np.random.seed(42)  # For consistent color assignment
     return np.random.randint(0, 255, size=(num_classes, 3), dtype='uint8')
@@ -61,7 +58,7 @@ def analyze_image():
     colors = generate_colors(num_classes)
 
     object_summary = {}
-    conf_scores = []     # confidence scores for calculating "accuracy"
+    conf_scores = []     # confidence scores for calculating accuracy
 
     for det in results.boxes:
         cls_id = int(det.cls.item())
@@ -70,7 +67,7 @@ def analyze_image():
         xyxy = det.xyxy.cpu().numpy().astype(int)[0]
         color = tuple(int(c) for c in colors[cls_id])
 
-        # Draw bounding box and label (no count summary on image)
+        # Draw bounding box and label
         cv2.rectangle(frame, (xyxy[0], xyxy[1]), (xyxy[2], xyxy[3]), color, 2)
         cv2.putText(frame, f"{label} {conf:.2f}", (xyxy[0], xyxy[1] - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
@@ -79,7 +76,7 @@ def analyze_image():
         object_summary[label] = object_summary.get(label, 0) + 1
         conf_scores.append(conf)
 
-    # Calculate mock "accuracy" as mean confidence
+    # Calculate mock accuracy as mean confidence
     accuracy = round(np.mean(conf_scores) * 100, 2) if conf_scores else 0.0
 
     # Save annotated result image

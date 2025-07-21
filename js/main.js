@@ -32,7 +32,6 @@
       ensureHomeHash();
     }
 
-    // --- Helper Functions ---
     function scrollToHome() {
       const homePage = document.getElementById("home-page");
       if (homePage) {

@@ -69,48 +69,111 @@ document.querySelector('.download-btn').addEventListener('click', async () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    // Add header
-    doc.setFontSize(18);
-    doc.text("LitterLens Detection Report", 20, 20);
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
 
-    // Accuracy
+    // === Decorative Page Border ===
+    doc.setDrawColor(160, 160, 160);  // light gray border
+    doc.setLineWidth(0.5);
+    doc.rect(10, 10, pageWidth - 20, pageHeight - 20);  // margin-based border
+
+    // === Header ===
+    doc.setFillColor(34, 49, 63); // dark header
+    doc.rect(10, 10, pageWidth - 20, 15, 'F');
+
+    doc.setFontSize(16);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.text("LitterLens Detection Report", pageWidth / 2, 20, { align: "center" });
+
+    // Reset font and color
+    doc.setFont("helvetica", "normal");
     doc.setFontSize(12);
-    doc.text(`Detection Accuracy: ${result.accuracy || "N/A"}%`, 20, 30);
+    doc.setTextColor(0, 0, 0);
 
-    // Classification Summary
-    doc.setFontSize(14);
-    doc.text("Classification Summary:", 20, 45);
-    let y = 55;
+    let y = 30;
+
+    // === Info Section ===
+    doc.text(`Date: ${new Date().toLocaleString()}`, 20, y);
+    y += 8;
+    doc.text(`Location: Pasig River (Kalawaan Bridge)`, 20, y);
+    y += 8;
+    doc.text(`Average Confidence: ${result.accuracy || "N/A"}%`, 20, y);
+
+    // === Classification Table Header ===
+    y += 15;
+    doc.setFont("helvetica", "bold");
+    doc.text("Classification Summary", 20, y);
+    y += 8;
+
+    const startX = 20;
+    const colWidths = [100, 30];
+
+    // Table Headers
+    doc.setDrawColor(0);
+    doc.setFillColor(220, 220, 220);
+    doc.rect(startX, y, colWidths[0], 10, "F");
+    doc.rect(startX + colWidths[0], y, colWidths[1], 10, "F");
+
+    doc.setTextColor(0);
+    doc.setFontSize(12);
+    doc.text("Litter Type", startX + 2, y + 7);
+    doc.text("Count", startX + colWidths[0] + 2, y + 7);
+
+    y += 10;
+
+    // Table Rows
+    doc.setFont("helvetica", "normal");
     for (const [label, count] of Object.entries(result.summary)) {
-        doc.text(`${label}: ${count}`, 25, y);
+        doc.rect(startX, y, colWidths[0], 10);
+        doc.rect(startX + colWidths[0], y, colWidths[1], 10);
+        doc.text(label, startX + 2, y + 7);
+        doc.text(String(count), startX + colWidths[0] + 2, y + 7);
         y += 10;
     }
 
-    // Location
-    doc.text("Location: Pasig River (Kalawaan Bridge)", 20, y + 10);
-
-    // Convert result image to Base64
-    const toDataURL = url =>
-        fetch(url)
-            .then(response => response.blob())
-            .then(blob => new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-                reader.readAsDataURL(blob);
-            }));
-
+    // === Result Image ===
     try {
+        const toDataURL = url =>
+            fetch(url)
+                .then(response => response.blob())
+                .then(blob => new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                    reader.readAsDataURL(blob);
+                }));
+
         const resultImageData = await toDataURL(`http://localhost:5000/uploads/${result.result_image}`);
 
-        doc.addPage();
-        doc.setFontSize(14);
-        doc.text("Analyzed Image:", 20, 20);
-        doc.addImage(resultImageData, "JPEG", 20, 30, 160, 100);
+        const imageY = y + 10;
+        const imageHeight = 75;
+        const imageWidth = 170;
 
-        doc.save("litterlens_report.pdf");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(12);
+        doc.text("Analyzed Image:", 20, imageY - 5);
+        doc.addImage(resultImageData, "JPEG", 20, imageY, imageWidth, imageHeight);
     } catch (err) {
         console.error("Failed to load image for PDF:", err);
         alert("Unable to include images in the PDF. Please check your server or image paths.");
     }
+
+    // === Footer ===
+    const footerY = pageHeight - 25;
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+
+    doc.setFont("helvetica", "normal");
+    doc.text("Pasig River Coordinating and Management Office - PRCMO", 20, footerY);
+
+    doc.setFont("helvetica", "italic");
+    doc.text("records.ncr@denr.gov.ph", 20, footerY + 5);
+
+    doc.setFont("helvetica", "normal");
+    doc.text("© LitterLens 2025. All rights reserved.", 20, footerY + 10);
+
+    doc.save("litterlens_report.pdf");
 });
+
+
