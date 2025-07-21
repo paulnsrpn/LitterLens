@@ -219,3 +219,35 @@ analyzeBtn.addEventListener("click", async () => {
     analyzeBtn.textContent = originalText;
   }
 });
+
+
+
+// CONTACTS 
+document.getElementById("contactForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const response = await fetch("http://localhost:5000/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const res = await response.json();
+
+    if (response.ok) {
+      alert("Your message was sent successfully!");
+    } else {
+      alert("Error: " + res.error);
+    }
+  } catch (error) {
+    alert("Something went wrong. Try again later.");
+    console.error(error);
+  }
+});

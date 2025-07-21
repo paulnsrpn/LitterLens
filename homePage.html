@@ -250,61 +250,72 @@
   <!--                                                                       Contact Page                                    -->
 
   <section id="contactPage">
-    <div class="upper-sec">
-      <img src="images/pasig-river.jpg" alt="">
-      <div class="green-overlay"></div>
+  <div class="upper-sec">
+    <img src="images/pasig-river.jpg" alt="">
+    <div class="green-overlay"></div>
+  </div>
+
+  <div class="contact-header" data-aos="fade-up" data-aos-duration="800">
+    <h1>Contact Us</h1>
+    <p>Have questions, feedback, or want to partner with us? Reach out—we’d love to hear from you.</p>
+  </div>
+
+  <div class="contact-content">
+    <div class="con-description">
+      <p>You can contact us through several ways.</p>
+      <p>Choose the one more convenient for you.</p>
     </div>
-    <div class="contact-header" data-aos="fade-up" data-aos-duration="800">
-      <h1>Contact Us</h1>
-      <p>Have questions, feedback, or want to partner with us? Reach out—we’d love to hear from you.</p>
+
+    <div class="con" data-aos="fade-right" data-aos-delay="200">
+      <i class="fa-regular fa-envelope"></i>
+      <span>records.ncr@denr.gov.ph</span>
     </div>
-    <div class="contact-content">
-      <div class="con-description">
-        <p>You can contact us through several ways.</p>
-        <p>Choose the one more convenient for you.</p>
+
+    <div class="con" data-aos="fade-right" data-aos-delay="400">
+      <i class="fa-brands fa-facebook-f"></i>
+      <span>Pasig River Coordinating and Management Office - PRCMO</span>
+    </div>
+  </div>
+
+  <!-- ✅ Contact Form Start -->
+  <form id="contactForm" class="contact-form" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">
+    <div class="contact-form-header">
+      <h1>Get in touch!</h1>
+      <p>You can reach us anytime</p>
+    </div>
+
+    <div class="names" data-aos="fade-up" data-aos-delay="100">
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+    </div>
+
+    <div class="add-infos" data-aos="fade-up" data-aos-delay="200">
+      <input type="email" name="email" placeholder="Your Email" required>
+      
+      <div class="phone-field">
+        <select class="country-code" name="countryCode" required>
+          <option value="+63">+63 (PH)</option>
+          <option value="+1">+1 (US)</option>
+          <option value="+44">+44 (UK)</option>
+          <option value="+91">+91 (IN)</option>
+        </select>
+        <input type="tel" name="phone" placeholder="Your Phone Number" maxlength="11" required>
       </div>
 
-      <div class="con" data-aos="fade-right" data-aos-delay="200">
-        <i class="fa-regular fa-envelope"></i>
-        <span>records.ncr@denr.gov.ph</span>
-      </div>
+      <textarea class="message" name="message" placeholder="How can we help?" rows="5" required></textarea>
 
-      <div class="con" data-aos="fade-right" data-aos-delay="400">
-        <i class="fa-brands fa-facebook-f"></i>
-        <span>Pasig River Coordinating and Management Office - PRCMO</span>
-      </div>
-    </div>
-    <div class="contact-form" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">
-      <div class="contact-form-header">
-        <h1> Get in touch! </h1>
-        <p>You can reach us anytime</p>
-      </div>
-      <div class="names" data-aos="fade-up" data-aos-delay="100">
-        <input type="text" placeholder="First Name">
-        <input type="text" placeholder="Last Name">
-      </div>
-      <div class="add-infos" data-aos="fade-up" data-aos-delay="200">
-        <input type="email" placeholder="Your Email">
-        <div class="phone-field">
-          <select class="country-code" required>
-            <option value="+63">+63 (PH)</option>
-            <option value="+1">+1 (US)</option>
-            <option value="+44">+44 (UK)</option>
-            <option value="+91">+91 (IN)</option>
-          </select>
-        <input type="tel" placeholder="Your Phone Number" pattern="[0-9]{11}" maxlength="11" required>
-      </div>
-      <textarea class="message" placeholder="How can we help? " rows="5" required></textarea>
       <button type="submit" class="submit-btn" data-aos="fade-up" data-aos-delay="500">Send Message</button>
+
       <p class="disclaimer" data-aos="fade-up" data-aos-delay="600">
         By contacting us, you agree to our 
         <a href="#" class="link">Terms of Service</a> and 
         <a href="#" class="link">Privacy Policy</a>.
       </p>
-
     </div>
+  </form>
+  <!-- ✅ Contact Form End -->
+</section>
 
-  </section>
 
   <footer class="footer">
     <div class="wave-container">
