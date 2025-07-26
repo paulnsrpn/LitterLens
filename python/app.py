@@ -13,7 +13,7 @@ CORS(app)
 # === Configuration ===
 UPLOAD_FOLDER = 'uploads'
 MODEL_PATH = 'my_model.pt'       #model of the system
-CONF_THRESHOLD = 0.25            # Minimum confidence threshold for detections
+CONF_THRESHOLD = 0.1            # Minimum confidence threshold for detections
 
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)

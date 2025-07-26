@@ -50,10 +50,14 @@
         <img src="" alt="Detected Result" class="detected-image" />
       </div>
 
-      <a href="homePage.html" class="back-btn">
-        <i class="fas fa-chevron-left"></i>
-        <p>Go back</p>
-      </a>
+     <div class="button-header">
+        <a href="homePage.html" class="back-btn">
+          <i class="fas fa-chevron-left"></i>
+          <p>Go back</p>
+        </a>
+        <button type="button" class="analyze-btn" onclick="resetAnalysis()">Analyze another photo</button>
+      </div>
+
     </div>
 
     <!-- Results Breakdown -->
@@ -73,7 +77,7 @@
 
       <!-- Accuracy Info -->
       <div class="other-infos">
-        <p>Detection Accuracy: <span id="accuracy-value">--%</span></p>
+        <p>Detection Confidence Accuracy: <span id="accuracy-value">--%</span></p>
         <hr class="dashed-line">
       </div>
 
@@ -91,8 +95,6 @@
     </div>
   </div>
 
-  <!-- Analyze Again Button -->
-  <button type="button" class="analyze-btn" onclick="resetAnalysis()">Analyze another photo</button>
 
   <!-- JavaScript -->
   <script src="js/result.js"></script>
